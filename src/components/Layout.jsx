@@ -22,6 +22,7 @@ const LogoutBtn = styled.button`
   border: none;
   border-radius: 4px;
   margin-left: 5px;
+  cursor: pointer;
 `;
 
 const BasicBtn = styled.button`
@@ -31,6 +32,7 @@ const BasicBtn = styled.button`
   border: none;
   border-radius: 4px;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 const UserProfile = styled.div`
@@ -46,7 +48,6 @@ const UserImg = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: #ef5958;
 `;
 
 const UserNickname = styled.p`
@@ -89,7 +90,7 @@ const Layout = ({ user, setUser }) => {
       <Navbar>
         <NavItem>
           <BasicBtn onClick={() => navigate("/")}>메인</BasicBtn>
-          <BasicBtn onClick={() => navigate("/")}>내 프로필</BasicBtn>
+          <BasicBtn onClick={() => navigate("/profile")}>내 프로필</BasicBtn>
         </NavItem>
         <NavItem>
           <UserProfile>

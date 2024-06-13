@@ -18,7 +18,7 @@ export const register = async ({ id, password, nickname }) => {
 
 export const signin = async ({ id, password }) => {
   try {
-    const response = await axios.post(`${API_POST}/login?expiresIn=10m`, {
+    const response = await axios.post(`${API_POST}/login?expiresIn=60m`, {
       id: id,
       password: password,
     });
@@ -35,6 +35,24 @@ export const getUserInfo = async () => {
     try {
       const response = await axios.get(`${API_POST}/user`, {
         headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      alert(error?.response?.data?.message);
+      localStorage.clear();
+    }
+  }
+};
+
+export const updateProfile = async (formData) => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    try {
+      const response = await axios.patch(`${API_POST}/profile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${accessToken}`,
         },
       });

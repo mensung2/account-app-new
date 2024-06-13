@@ -55,6 +55,7 @@ const SignInBtn = styled.button`
   color: #fff;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 const SignUpBtn = styled.button`
@@ -64,6 +65,7 @@ const SignUpBtn = styled.button`
   color: #fff;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 const SignUp = () => {
