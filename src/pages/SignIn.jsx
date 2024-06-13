@@ -15,6 +15,7 @@ const Container = styled.main`
   align-items: center;
   font-size: 13pt;
   margin: auto;
+  margin-top: 20px;
 `;
 
 const Section = styled.section`
@@ -76,7 +77,9 @@ const SignIn = ({ setUser }) => {
       password: password,
     });
 
+    alert("로그인 성공");
     setUser({ userId, nickname, avatar });
+    navigate("/");
   };
 
   return (

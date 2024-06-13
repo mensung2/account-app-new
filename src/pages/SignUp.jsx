@@ -16,6 +16,7 @@ const Container = styled.main`
   align-items: center;
   font-size: 13pt;
   margin: auto;
+  margin-top: 20px;
 `;
 
 const Section = styled.section`
