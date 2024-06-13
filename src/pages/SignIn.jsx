@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { signin } from "../lib/api/auth";
 
 const Container = styled.main`
   background-color: #f8f9fa;
@@ -64,14 +65,18 @@ const SignUpBtn = styled.button`
   border-radius: 4px;
 `;
 
-const SignIn = () => {
+const SignIn = ({ setUser }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignIn = () => {
-    console.log("id: ", id);
-    console.log("password: ", password);
+  const handleSignIn = async () => {
+    const { userId, nickname, avatar } = await signin({
+      id: id,
+      password: password,
+    });
+
+    setUser({ userId, nickname, avatar });
   };
 
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { register } from "../lib/api/auth";
 
 const Container = styled.main`
   background-color: #f8f9fa;
@@ -70,11 +71,7 @@ const SignUp = () => {
   const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
 
-  const handleSignUp = () => {
-    console.log("id: ", id);
-    console.log("password: ", password);
-    console.log("nickname: ", nickname);
-
+  const handleSignUp = async () => {
     if (id.length < 4 || id.length > 10) {
       alert("id는 4글자에서 10글자로 입력해 주세요.");
       return;
@@ -85,13 +82,23 @@ const SignUp = () => {
       return;
     }
 
-    if (nickname.length < 4 || nickname.length > 10) {
+    if (nickname.length < 1 || nickname.length > 10) {
       alert("nickname은 1글자에서 10글자로 입력해 주세요.");
       return;
     }
 
     // min/maxLength 는 공백 유효성 검사가 안 되니까 패스함. 댓글 입력에는 유효.
     // 일단 alert으로 하고 추후 텍스트 뜨는 걸로 수정하는 것도 생각 중
+
+    const response = await register({
+      id: id,
+      password: password,
+      nickname: nickname,
+    });
+    if (response) {
+      confirm("회원 가입이 완료되었습니다.");
+      navigate("/signin");
+    }
   };
 
   return (

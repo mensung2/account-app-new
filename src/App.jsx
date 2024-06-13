@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import { getUserInfo } from "./lib/api/auth";
 
 function App() {
   const [expenses, setExpenses] = useState([
@@ -68,19 +69,32 @@ function App() {
     },
   ]);
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getUserInfo().then((res) => {
+      setUser({
+        userId: res.id,
+        nickname: res.nickname,
+        avatar: res.avatar,
+      });
+    });
+  }, []);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Routec path="/"></Routec>
           <Route
-            path="/"
+            index
             element={<Home expenses={expenses} setExpenses={setExpenses} />}
           />
           <Route
             path="/detail/:id"
             element={<Detail expenses={expenses} setExpenses={setExpenses} />}
           />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
