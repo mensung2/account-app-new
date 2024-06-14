@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const JSON_SERVER = "http://localhost:5000";
+const JSON_SERVER = "https://unique-inconclusive-calendula.glitch.me";
 
 export const getExpenses = async () => {
   try {
